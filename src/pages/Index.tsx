@@ -2,6 +2,10 @@ import ProcessTimeline from "@/components/ProcessTimeline";
 import TechnologiesSection from "@/components/TechnologiesSection";
 import AnimatedPipeline from "@/components/AnimatedPipeline";
 import CallToAction from "@/components/CallToAction";
+import ApiDocumentation from "@/components/ApiDocumentation";
+import AdminFeatures from "@/components/AdminFeatures";
+import DeviceUsage from "@/components/DeviceUsage";
+import PrivacySection from "@/components/PrivacySection";
 import { Shield, Microscope } from "lucide-react";
 import heroImage from "@/assets/hero-bacteria-detection.jpg";
 
@@ -64,6 +68,18 @@ const Index = () => {
       
       {/* Technologies Section */}
       <TechnologiesSection />
+      
+      {/* Device Usage */}
+      <DeviceUsage />
+      
+      {/* API Documentation */}
+      <ApiDocumentation />
+      
+      {/* Admin Features */}
+      <AdminFeatures />
+      
+      {/* Privacy Section */}
+      <PrivacySection />
       
       {/* Call to Action */}
       <CallToAction />
