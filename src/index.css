@@ -9,16 +9,16 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 213 31% 91%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 240 10% 3.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 240 10% 3.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 207 89% 42%;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -26,15 +26,38 @@ All colors MUST be HSL.
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 160 60% 45%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 207 89% 42%;
+
+    /* BactoShield Design System */
+    --shield-blue: 207 89% 42%;
+    --shield-blue-light: 207 89% 65%;
+    --shield-blue-dark: 207 89% 25%;
+    --shield-green: 160 60% 45%;
+    --shield-green-light: 160 60% 65%;
+    --shield-gray: 213 31% 91%;
+    --shield-gray-dark: 240 10% 3.9%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--shield-blue)), hsl(var(--shield-blue-light)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--shield-green)), hsl(var(--shield-green-light)));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(213 31% 98%));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 16px -4px hsl(var(--shield-blue) / 0.1);
+    --shadow-medium: 0 8px 25px -8px hsl(var(--shield-blue) / 0.15);
+    --shadow-strong: 0 16px 40px -12px hsl(var(--shield-blue) / 0.2);
+    
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     --radius: 0.5rem;
 
@@ -100,6 +123,63 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* BactoShield Custom Components */
+  .hero-section {
+    @apply bg-gradient-to-br from-background via-background to-blue-50/30;
+  }
+  
+  .process-step {
+    @apply relative p-6 rounded-2xl transition-all duration-300 hover:shadow-lg;
+    background: var(--gradient-subtle);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .process-step:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-4px);
+  }
+  
+  .tech-card {
+    @apply p-6 rounded-xl border-2 border-border/50 transition-all duration-300;
+    background: var(--gradient-subtle);
+  }
+  
+  .tech-card:hover {
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .pipeline-flow {
+    @apply relative overflow-hidden rounded-3xl p-8;
+    background: var(--gradient-primary);
+  }
+  
+  .pipeline-step {
+    @apply flex items-center justify-center w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .flow-arrow {
+    @apply w-8 h-0.5 bg-white/60;
+    animation: flow 2s ease-in-out infinite;
+  }
+  
+  @keyframes flow {
+    0%, 100% { opacity: 0.6; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(4px); }
+  }
+  
+  @keyframes pulse-soft {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+  }
+  
+  .animate-pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
   }
 }
